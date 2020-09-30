@@ -1,5 +1,6 @@
 # --------------
 import pandas as pd
+import pyforest as pf
 from sklearn.model_selection import train_test_split
 
 # Code starts here
@@ -33,10 +34,6 @@ print(X_test.head())
 # Code ends here
 
 
-# --------------
-import numpy as np
-
-
 # Code starts here
 y_train = np.where((y_train == 'Fully Paid') |(y_train == 'Current'), 0, 1)
 y_test = np.where((y_test == 'Fully Paid') |(y_test == 'Current'), 0, 1)
@@ -45,9 +42,6 @@ y_test = np.where((y_test == 'Fully Paid') |(y_test == 'Current'), 0, 1)
 
 
 # --------------
-from sklearn.preprocessing import LabelEncoder
-
-
 # categorical and numerical variables
 cat = X_train.select_dtypes(include = 'O').columns.tolist()
 num = X_train.select_dtypes(exclude = 'O').columns.tolist()
@@ -113,10 +107,6 @@ print(auc)
 plt.plot(fpr,tpr,label="Random Forest model, auc="+str(auc))
 plt.show()
 # Code ends here
-
-
-# --------------
-from xgboost import XGBClassifier
 
 # Code starts here
 xgb = XGBClassifier(learning_rate = 0.0001)
